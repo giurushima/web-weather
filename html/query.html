@@ -1,14 +1,39 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Inicio | WEB-WEATHER</title>
-    <script src="../js/defect.js"></script>
+    <script src="../js/defect.js" defer></script>
     <link rel="stylesheet" href="../css/styles.css" />
-  </head>
-  <body>
-    <h1>BIENVENIDO WEB-WEATHER</h1>
-  </body>
+</head>
+
+<body>
+    <div class="container day" id="container">
+        <div class="inputTemp">
+            <div class="select">
+                <select onchange="changeClima()" id="ciudad">
+                <option disabled selected value="0"> -- Seleccione su ciudad -- </option>
+                <option value="rosario">Rosario</option>
+                <option value="cordoba">Córdoba</option>
+            </select>
+            </div>
+            <div class="inputTemp_number">
+                <div class="inputTemp_celcius" id="degreeNumber">15</div>
+                <div class="inputTemp_symbol">°C</div>
+            </div>
+            <div id="weather-icon"></div>
+            <div class="inputTemp_description" id="description"></div>
+        </div>
+        <div class="location"></div>
+        <div class="weather">
+            <div class="weather_min"><small>Min</small><span id="min"></span></div>
+            <div class="weather_max"><small>Max</small><span id="max"></span></div>
+        </div>
+    </div>
+
+</body>
+
 </html>
