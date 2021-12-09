@@ -1,17 +1,57 @@
 //se hace el form y con un button onclick se guarda el nombre, en la funcion comparar el localstorage array si este tiene
 // mismo nombre que se ingresa. PONER INNERHTML para mostrar mensaje de que se cargo
 var nombreC;
-var arrayCiudad;
+var arrayCiudad = [nombreC];
+var i = 0;
 
 function agregarCiudad() {
 
-    nombreC = document.getElementById("nombreCiudad").value;
-    arrayCiudad = [];
-    for (var i = 0; i < nombreC.length; i++) { 
-        // if (nombreC==localStorage[]){}
-        arrayCiudad[i] = nombreC[i].value;
-        console.log(nombreC[i].value);
-}
+    // arrayCiudad.push = document.getElementById("nombreCiudad").value;
+
+    // arrayCiudad = localStorage.setItem("Nombre", JSON.stringify(arrayCiudad));
+
+    // localStorage.getItem("Nombre");
+    
+    localStorage.setItem("data", JSON.stringify(data));
+
+//...
+    var data = JSON.parse(localStorage.getItem("data"));
+
+
+    // if (localStorage.getItem("key") === null) {
+    //     // El item no existe
+    // }
+
+    // if(arrayCiudad==localStorage.getItem(arrayCiudad)){
+    //     console.log("yA esta agregada");
+    // }
+    //     else{
+    //     localStorage.setItem("Nombre", arrayCiudad);
+    //     console.log("Se agrego ciudad");
+    //     i++;
+    // }
+
+    // localStorage.setItem("key", JSON.stringify(array));
+    
+    // for(var i = 0; i < arrayCiudad; i++) {
+        
+    // }
+
+    // localStorage.getItem("Nombre");
+
+    // console.log(nombreC);
+    
+    
+
+    // console.log(localStorage.);
+
+    // arrayCiudad = [];
+    // nombreC = localStorage.getItem("Nombre");
+    // for (var i = 0; i < nombreC.length; i++) {
+    //     // if (nombreC==localStorage[]){}
+    //     arrayCiudad[i] = nombreC[i].value;
+    //     console.log(arrayCiudad[i].value);
+    // }
 }
 
 // Agregar ciudad
