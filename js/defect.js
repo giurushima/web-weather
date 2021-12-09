@@ -1,21 +1,69 @@
 //se hace el form y con un button onclick se guarda el nombre, en la funcion comparar el localstorage array si este tiene
 // mismo nombre que se ingresa. PONER INNERHTML para mostrar mensaje de que se cargo
-var nombreC;
-var arrayCiudad = [nombreC];
-var i = 0;
+
+
+// var elemento = document.querySelector("#nombreCiudad");
 
 function agregarCiudad() {
 
-    // arrayCiudad.push = document.getElementById("nombreCiudad").value;
-
-    // arrayCiudad = localStorage.setItem("Nombre", JSON.stringify(arrayCiudad));
-
-    // localStorage.getItem("Nombre");
+    var data = document.getElementById("nombreCiudad").value;
     
-    localStorage.setItem("data", JSON.stringify(data));
+    if(localStorage.getItem('Ciudad') == null || localStorage.getItem('Ciudad') == data){
+        for(var i = 0; i < olddata.length; i++) {
+            console.log(olddata[i]);
+        }
+        localStorage.setItem('Ciudad', '[]');
+        ciudad.options.add(new Option('Ciudad', olddata));
+    }
 
-//...
-    var data = JSON.parse(localStorage.getItem("data"));
+    var olddata = JSON.parse(localStorage.getItem('Ciudad'));
+    olddata.push(data);
+
+    localStorage.setItem('Ciudad', JSON.stringify(olddata));
+
+
+
+    // if(arrayCiudad==0){
+    // console.log("s");
+    //     }else{
+    //         for(var i = 0; i < arrayCiudad.length; i++) {
+    //             arrayCiudad[i] = document.getElementById("nombreCiudad").value;
+    //         }
+    //     }
+
+    // localStorage.setItem("Nombre", JSON.stringify(arrayCiudad));
+
+    // localStorage.getItem("Nombre", arrayCiudad);
+
+
+    // var miObjeto = {'name': nombreC}
+
+    // localStorage.setItem('datos', JSON.stringify(miObjeto));
+    // var guardado = localStorage.getItem('datos');
+
+    // console.log('objetoObtenido: ', JSON.parse(guardado));
+//     Claves para este enunciado
+// ● Antes de guardar la ciudad debe validarse que la misma no esté incluida en el listado
+// de ciudades.
+// ● Para consultar el valor de un ítem en localStorage usar la función
+// localStorage.getItem("item");
+// ● Para editar el valor de un ítem en localStorage usar la función
+// localStorage.setItem("item", nuevoValor);
+// ● El método setItem de localStorage sobrescribe completamente el valor de la variable,
+// por lo que si tenemos un arreglo guardado en localStorage y queremos agregar un
+// item al arreglo, debemos usar la función setItem y pasarle en el parámetro de valor
+// el arreglo completo con la nueva opción agregada.
+
+
+    // for(var i = 0; i < arrayCiudad.length; i++) {
+    //     var opt[i] = arrayCiudad[i];
+            
+    // }
+    
+//     localStorage.setItem("data", JSON.stringify(nombreC));
+
+// //...
+//     var nombreC = JSON.parse(localStorage.getItem("Nombre"));
 
 
     // if (localStorage.getItem("key") === null) {

@@ -11,3 +11,21 @@ function changeClima(){
 
 .catch(error =>console.log(error))
 }
+
+function agregarCiudad() {
+
+    var data = document.getElementById("nombreCiudad").value;
+    
+    if(localStorage.getItem('Ciudad') == null || localStorage.getItem('Ciudad') == data){
+        for(var i = 0; i < olddata.length; i++) {
+            console.log(olddata[i]);
+        }
+        localStorage.setItem('Ciudad', '[]');
+        ciudad.options.add(new Option('Ciudad', olddata));
+    }
+
+    var olddata = JSON.parse(localStorage.getItem('Ciudad'));
+    olddata.push(data);
+
+    localStorage.setItem('Ciudad', JSON.stringify(olddata));
+}
