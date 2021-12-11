@@ -1,3 +1,22 @@
+
+let tempMax = document.getElementById("max");
+let tempMin = document.getElementById("min");
+let temp_ = document.getElementById("degreeNumber");
+let feels = document.getElementById("feelsLike");
+let humidity = document.getElementById("humidity_");
+let status_ = document.getElementById("status"); //seria si esta nublado
+let description = document.getElementById("description"); //descripción
+let today = new Date(); //crea el objeto de la fecha de hoy
+let hour = today.getHours(); //accedo a la hora para la funcion Wallpaper!
+
+function wallpaper(){
+    if(hour <= 18 && hour >= 7){
+        //Aca hay que cambiar la ruta para que ponga el wallpaper de día
+        // es decir que por defecto necesitamos que este puesto el de noche!!
+    }
+}
+
+
 function changeClima(){
 
     let city = document.getElementById("ciudad").value;
@@ -5,12 +24,32 @@ function changeClima(){
 
     fetch(url)
     .then((response) => response.json())
-    .then(data => console.log(data))
+    .then(data => {
 
-        //Aca va iria al funcion para mostrar la respuett)
+    let tempValue = data['main']['temp'];
+    let tempMinValue = data['main']['temp_min'];
+    let tempMaxValue = data['main']['temp_max'];
+    let feelsValue = data['main']['feels_like'];
+    let humidityValue = data['main']['humidity'];
+    /*con statusValue hay que hacer una funcion que cambie el icono en funcion a lo 
+    que devuelva, nublado, soleado, lluvia , etc!*/
+    let statusValue = data['weather'][0]['main'];
+    let descriptionValue = data['weather'][0]['description'];
+
+    city_.innerHTML = city;
+    temp_.innerHTML = tempValue;
+    tempMin.innerHTML = tempMinValue;
+    tempMax.innerHTML = tempMaxValue;
+    feels.innerHTML = feelsValue;
+    humidity.innerHTML = humidityValue;
+    status_.innerHTML = statusValue;
+    description.innerHTML = descriptionValue;
+    })
 
 .catch(error =>console.log(error))
 }
+
+
 
 function agregarCiudad() {
 
