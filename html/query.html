@@ -1,49 +1,45 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Inicio | WEB-WEATHER</title>
-    <script src="../js/apishit.js" defer></script>
-    <script src="../js/defect.js" defer></script>
-    <link rel="stylesheet" href="../css/styles.css" />
-  </head>
 
-  <body>
-    <div class="container day" id="container">
-      <div class="inputTemp">
-        <div class="select">
-          <select onchange="changeClima()" id="ciudad">
-            <option disabled selected value="0">
-              -- Seleccione su ciudad --
-            </option>
-            <option value="Rosario">Rosario</option>
-            <option value="Cordoba">Córdoba</option>
-            <option value="Buenos Aires">Buenos Aires</option>
-          </select>
-        </div>
-        <div class="inputTemp_number">
-          <div class="nameCity" id="city_"></div>
-          <div class="inputTemp_celcius" id="degreeNumber"></div>
-          <div class="inputTemp_symbol">°C</div> <!--Esto hay que hacerlo que no se vea desde css
-                                                    y que cuando trae la ciudad se vea!!!-->
-          
-         
-          
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inicio | WEB-WEATHER</title>
+  <script src="../js/apishit.js" defer></script>
+  <script src="../js/defect.js" defer></script>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
 
-        </div>
-        <div id="weather-icon"></div>
-        <div class="inputTemp_description" id="description"></div>
+<body>
+  <div class="container" id="container">
+    <h1>WEB WEATHER</h1>
+    <div class="inputTemp">
+      <div class="select">
+        <select onchange="changeClima()" id="ciudad">
+          <option disabled selected value="0">
+            -- Seleccione su ciudad --
+          </option>
+          <option value="Rosario">Rosario</option>
+          <option value="Cordoba">Córdoba</option>
+          <option value="Buenos Aires">Buenos Aires</option>
+        </select>
       </div>
-      <div class="location"></div>
-      <div class="weather">
-        <div class="weather_min"><small>Mínima: </small><span id="min"></span></div>
-        <div class="weather_max"><small>Máxima: </small><span id="max"></span></div>
-        <div class="feels_"><small>Sensación Térmica: </small><span id="feelsLike"></span></div>
-        <div class="humedad_"><small>Humedad: </small><span id="humidity_"></span></div>
-        <div class="status_"><span id="status"></span></div>
+      <div class="inputTemp_number">
+        <div class="inputTemp_celcius" id="degreeNumber"></div>
       </div>
+      <div class="inputTemp_description" id="description"></div>
+      <div id="weather-icon"></div>
     </div>
-  </body>
+    <div class="location"></div>
+    <div class="weather">
+      <div class="weather_min"><small>Mínima: </small><span id="min"></span></div>
+      <div class="weather_max"><small>Máxima: </small><span id="max"></span></div>
+      <div class="feels_"><small>Sensación Térmica: </small><span id="feelsLike"></span></div>
+      <div class="humedad_"><small>Humedad: </small><span id="humidity_"></span></div>
+      <div class="status_"><span id="status"></span></div>
+    </div>
+  </div>
+</body>
+
 </html>

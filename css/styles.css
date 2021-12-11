@@ -14,7 +14,7 @@ body {
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .container.day {
@@ -50,6 +50,8 @@ body {
     width: 100%;
     padding: 0.5rem;
     border-radius: .5rem;
+    display: flex;
+    align-items: center;
 }
 
 .inputTemp_number {
@@ -59,12 +61,53 @@ body {
 
 .inputTemp_celcius {
     text-align: center;
-    color: white;
+    color: black;
     font-weight: bolder;
-    font-size: 4rem;
+    font-size: 3.5rem;
 }
 
-.inputTemp_symbol {
-    font-size: 3rem;
-    color: white;
+.inputTemp_description {
+    font-size: 1.3rem;
+    font-weight: bolder;
+}
+
+.weather {
+    flex: 0.2;
+    color: black;
+    border-top: 2px solid rgb(0, 0, 0);
+    font-size: 1rem;
+}
+
+.weather_min {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.weather_max {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.feels_{
+    justify-content: space-between;
+    align-items: center;
+}
+.humedad{
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media(min-width:768px) and (max-width:1200px){
+    .weather{
+        font-size: 2rem;
+    }
+    .inputTemp_description{
+        font-size: 2rem;
+    }
+    .inputTemp_celcius{
+        font-size: 4rem;
+    }
+    .select{
+        size: 500px;
+    }
 }
