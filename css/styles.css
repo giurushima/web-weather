@@ -25,6 +25,7 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
+    color: black;
 }
 
 .container.night {
@@ -35,6 +36,7 @@ body {
     align-items: center;
     display: flex;
     flex-direction: column;
+    color: white;
 }
 
 .inputTemp {

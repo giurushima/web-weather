@@ -25,7 +25,8 @@ function wallpaper(){
         container.classList.remove("day");
         container.classList.add("night");
         weather.style.color = 'white';
-        celcius.style.fontSize = '500px';
+        celcius.style.color = 'white';
+        description.style.color = 'white';
     }
 }
 
