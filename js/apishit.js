@@ -58,6 +58,7 @@ function changeClima(){
     humidity.innerHTML = humidityValue + " %";
     status_.innerHTML = statusValue;
     description.innerHTML = descriptionValue;
+    weather.style.display = "block";
     })
 
 .catch(error =>console.log(error))
