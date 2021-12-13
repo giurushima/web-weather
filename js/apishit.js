@@ -12,8 +12,12 @@ let description = document.getElementById("description"); //descripción
 let today = new Date(); //crea el objeto de la fecha de hoy
 let hour = today.getHours(); //accedo a la hora para la funcion Wallpaper!
 
+let val;
+
+
 window.onload = () =>{
     wallpaper();
+    mirar();
 }
 
 function wallpaper(){
@@ -64,22 +68,120 @@ function changeClima(){
 .catch(error =>console.log(error))
 }
 
+function agregarCiudad(){
 
+    // alert("Entro");
 
-function agregarCiudad() {
+    // let nuevosC = document.getElementById("nombreCiudad").value;
+    // //localStorage.setItem('Ciudad', JSON);
 
-    var data = document.getElementById("nombreCiudad").value;
+    // console.log(arrayCity);
+    // alert("antes")
+    // if(nuevosC != 0){
+    //     val = arrayCity.includes(nuevosC);
+    //     console.log(val);
+
+    //     alert("deps");
+    //     if(val == false){
+
+    //         localStorage.setItem('Ciudad', '[]');
+
+    //         arrayCity = JSON.parse(localStorage.getItem('Ciudad'));
     
-    if(localStorage.getItem('Ciudad') == null || localStorage.getItem('Ciudad') == data){
-        for(var i = 0; i < olddata.length; i++) {
-            console.log(olddata[i]);
-        }
-        localStorage.setItem('Ciudad', '[]');
-        ciudad.options.add(new Option('Ciudad', olddata));
-    }
+    //         // mirar(nuevosC);
 
-    var olddata = JSON.parse(localStorage.getItem('Ciudad'));
-    olddata.push(data);
+    //         localStorage.setItem('Ciudad', JSON.stringify(arrayCity));
 
-    localStorage.setItem('Ciudad', JSON.stringify(olddata));
+    //         alert("deberia haber agrgado la city");
+
+    //     }else{
+    //         alert("Ciudad ya ingresada Cachorro!");
+    //     }
+    //     alert("despues if");
+    // }else{
+    //     alert("agrega algo pichon");
+    // }
+
+    // debugger;
+
+    // let nuevosC = document.getElementById("nombreCiudad").value;
+    // viejosC = JSON.parse(localStorage.getItem('Ciudad'));
+
+    // val = viejosC.includes(nuevosC);
+
+    // if(val == false){
+    //     viejosC.push(nuevosC);
+    //     localStorage.setItem('Ciudad', JSON.stringify(viejosC));
+        
+    //     mirar();
+
+    // }else{
+    //     alert("Ciudad ya ingresada Cachorro!");
+    // }
+
+    //obtenemos los datos del input
+    var nuevosC = document.getElementById("nombreCiudad").value;
+
+
+    // si no hay nada guardado al principio entonces guarda un array vacio
+    if(nuevosC!=0){
+        if(localStorage.getItem('Ciudad') == null){
+            localStorage.setItem('Ciudad', "[]");
+        } 
+    //     val = viejosC.includes(nuevosC);
+    //     alert("PASO");
+
+    // if(val == false){
+        var viejosC = JSON.parse(localStorage.getItem('Ciudad'));
+    
+        
+        viejosC.push(nuevosC);
+        console.log(viejosC);
+
+        localStorage.setItem('Ciudad', JSON.stringify(viejosC));
+
+    
 }
+    // obtenemos los datos antiguos y se los pegamos al nuevo array (push) 
+    
+
+    //guardamos los datos antiguos + los nuevos en el localstorage
+    
+
+    // Puedes obtener el array de localstorage, lo parseas y haces un push y luego lo vuelves a meter en el localstorage
+} 
+
+function mirar(){
+    // document.getElementById("ciudad").innerHTML = JSON.parse(localStorage.getItem("Ciudad")); PARA MOSTRAR
+    // Cuando transformas el json en array, tenes que recorrer el array resultante y
+    // agregar cada elemento al select como una option diferente
+
+    var ciudades = JSON.parse(localStorage.getItem("Ciudad"));
+
+    ciudades.forEach(array => {
+        var c = document.createElement('option');
+        c.value = array;
+        c.text = array;
+        ciudad.appendChild(c);
+    })
+}
+
+
+    //  //obtenemos los datos del input
+    //  var nuevosC = document.getElementById("nombreCiudad").value;
+    //  var k = 0;
+
+    //  // si no hay nada guardado al principio entonces guarda un array vacio
+    //  if(localStorage.getItem('Ciudad') == null){
+    //      localStorage.setItem('Ciudad', "[]");
+    //  } 
+    //  // else {
+    //  //     localStorage.removeItem('Ciudad', "");
+    //  // }
+
+    //  // obtenemos los datos antiguos y se los pegamos al nuevo array (push) 
+    //  var viejosC = JSON.parse(localStorage.getItem('Ciudad'));
+    //  viejosC.push(nuevosC);
+
+    //  //guardamos los datos antiguos + los nuevos en el localstorage
+    //  localStorage.setItem('Ciudad', JSON.stringify(viejosC));
