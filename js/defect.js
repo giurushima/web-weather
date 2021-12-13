@@ -1,111 +1,102 @@
-//se hace el form y con un button onclick se guarda el nombre, en la funcion comparar el localstorage array si este tiene
-// mismo nombre que se ingresa. PONER INNERHTML para mostrar mensaje de que se cargo
+var weather = document.getElementById("weather");
+var celcius = document.getElementById("degreeNumber");
+let weatherIcon = document.getElementById("weather-icon");
+let tempMax = document.getElementById("max");
+let tempMin = document.getElementById("min");
+let temp_ = document.getElementById("degreeNumber");
+let feels = document.getElementById("feelsLike");
+let humidity = document.getElementById("humidity_");
+let status_ = document.getElementById("status"); //seria si esta nublado
+let description = document.getElementById("description"); //descripción
+let today = new Date(); //crea el objeto de la fecha de hoy
+let hour = today.getHours(); //accedo a la hora para la funcion Wallpaper!
 
+let val;
 
-// var elemento = document.querySelector("#nombreCiudad");
-
-function agregarCiudad() {
-
-    var data = document.getElementById("nombreCiudad").value;
-    
-    if(localStorage.getItem('Ciudad') == null || localStorage.getItem('Ciudad') == data){
-        for(var i = 0; i < olddata.length; i++) {
-            console.log(olddata[i]);
-        }
-        localStorage.setItem('Ciudad', '[]');
-        ciudad.options.add(new Option('Ciudad', olddata));
-    }
-
-    var olddata = JSON.parse(localStorage.getItem('Ciudad'));
-    olddata.push(data);
-
-    localStorage.setItem('Ciudad', JSON.stringify(olddata));
-
-
-
-    // if(arrayCiudad==0){
-    // console.log("s");
-    //     }else{
-    //         for(var i = 0; i < arrayCiudad.length; i++) {
-    //             arrayCiudad[i] = document.getElementById("nombreCiudad").value;
-    //         }
-    //     }
-
-    // localStorage.setItem("Nombre", JSON.stringify(arrayCiudad));
-
-    // localStorage.getItem("Nombre", arrayCiudad);
-
-
-    // var miObjeto = {'name': nombreC}
-
-    // localStorage.setItem('datos', JSON.stringify(miObjeto));
-    // var guardado = localStorage.getItem('datos');
-
-    // console.log('objetoObtenido: ', JSON.parse(guardado));
-//     Claves para este enunciado
-// ● Antes de guardar la ciudad debe validarse que la misma no esté incluida en el listado
-// de ciudades.
-// ● Para consultar el valor de un ítem en localStorage usar la función
-// localStorage.getItem("item");
-// ● Para editar el valor de un ítem en localStorage usar la función
-// localStorage.setItem("item", nuevoValor);
-// ● El método setItem de localStorage sobrescribe completamente el valor de la variable,
-// por lo que si tenemos un arreglo guardado en localStorage y queremos agregar un
-// item al arreglo, debemos usar la función setItem y pasarle en el parámetro de valor
-// el arreglo completo con la nueva opción agregada.
-
-
-    // for(var i = 0; i < arrayCiudad.length; i++) {
-    //     var opt[i] = arrayCiudad[i];
-            
-    // }
-    
-//     localStorage.setItem("data", JSON.stringify(nombreC));
-
-// //...
-//     var nombreC = JSON.parse(localStorage.getItem("Nombre"));
-
-
-    // if (localStorage.getItem("key") === null) {
-    //     // El item no existe
-    // }
-
-    // if(arrayCiudad==localStorage.getItem(arrayCiudad)){
-    //     console.log("yA esta agregada");
-    // }
-    //     else{
-    //     localStorage.setItem("Nombre", arrayCiudad);
-    //     console.log("Se agrego ciudad");
-    //     i++;
-    // }
-
-    // localStorage.setItem("key", JSON.stringify(array));
-    
-    // for(var i = 0; i < arrayCiudad; i++) {
-        
-    // }
-
-    // localStorage.getItem("Nombre");
-
-    // console.log(nombreC);
-    
-    
-
-    // console.log(localStorage.);
-
-    // arrayCiudad = [];
-    // nombreC = localStorage.getItem("Nombre");
-    // for (var i = 0; i < nombreC.length; i++) {
-    //     // if (nombreC==localStorage[]){}
-    //     arrayCiudad[i] = nombreC[i].value;
-    //     console.log(arrayCiudad[i].value);
-    // }
+window.onload = () =>{
+    wallpaper();
+    mirar();
 }
 
-// Agregar ciudad
-// Esta página servirá para agregar una ciudad a la lista de ciudades. Debe consistir en un
-// formulario con un único campo de texto que permita ingresar el nombre de una ciudad y un
-// botón que al ser clickeado guarde la nueva ciudad en el listado de ciudades del
-// localStorage. Si se intenta agregar una ciudad que ya está guardada, se debe mostrar un
-// cartel de error. En el caso de que la ciudad no se encuentre guardada, agregarla al listado e
-// informar el guardado con un mensaje de éxito.
+function wallpaper(){
+    if(hour <= 18 && hour >= 7){
+        container.classList.remove("night");
+        container.classList.add("day");
+    }
+    else{
+        container.classList.remove("day");
+        container.classList.add("night");
+        weather.style.color = 'white';
+        celcius.style.color = 'white';
+        description.style.color = 'white';
+    }
+}
+
+function changeClima(){
+
+    let city = document.getElementById("ciudad").value;
+    let url = "https://api.openweathermap.org/data/2.5/weather?q="+ city +"&appid=3936d0749fdc3124c6566ed26cf11978&units=metric&lang=es";
+
+    fetch(url)
+    .then((response) => response.json())
+    .then(data => {
+
+    let tempValue = data['main']['temp'];
+    let tempMinValue = data['main']['temp_min'];
+    let tempMaxValue = data['main']['temp_max'];
+    let feelsValue = data['main']['feels_like'];
+    let humidityValue = data['main']['humidity'];
+    let statusValue = data['weather'][0]['main'];
+    let icon = data['weather'][0]['icon'];
+    let descriptionValue = data['weather'][0]['description'];
+
+    weatherIcon.innerHTML = `<img src='../icons/${icon}.png'></img>`;
+    temp_.innerHTML = tempValue + " °C";
+    tempMin.innerHTML = tempMinValue + " °C";
+    tempMax.innerHTML = tempMaxValue + " °C";
+    feels.innerHTML = feelsValue + " °C";
+    humidity.innerHTML = humidityValue + " %";
+    status_.innerHTML = statusValue;
+    description.innerHTML = descriptionValue;
+    weather.style.display = "block";
+    })
+
+.catch(error =>console.log(error))
+}
+
+function agregarCiudad(){
+
+    //obtenemos datos del input
+    var nuevosC = document.getElementById("nombreCiudad").value;
+
+    if(nuevosC!=0){
+        //si no hay nada guardado al principio entonces guarda un array vacio
+        if(localStorage.getItem('Ciudad') == null){
+            localStorage.setItem('Ciudad', "[]");
+        } 
+        var viejosC = JSON.parse(localStorage.getItem('Ciudad'));
+        val = viejosC.includes(nuevosC);
+
+        if(val == false){
+            //obtenemos los datos antiguos y se los pegamos al nuevo array (push) 
+            viejosC.push(nuevosC);
+            //guardamos los datos antiguos + los nuevos en el localstorage
+            localStorage.setItem('Ciudad', JSON.stringify(viejosC));
+        } else{
+            alert("Ciudad ya ingresada");
+        }
+    } else {
+        alert("Ingrese una ciudad");
+    }
+} 
+
+function mirar(){
+
+    var ciudades = JSON.parse(localStorage.getItem("Ciudad"));
+
+    ciudades.forEach(array => {
+        var c = document.createElement('option');
+        c.text = array;
+        ciudad.appendChild(c);
+    })
+}
