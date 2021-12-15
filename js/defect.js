@@ -128,7 +128,7 @@ function mirar(){
         //A la variable c le vamos asignando ciudad por ciudad
         //de lo que va leyendo
         c.text = array;
-        //Al id ciudad le agregamos ciudad por ciudad que tengamos en el array
+        //Al id ciudad(SELECT) le agregamos ciudad por ciudad que tengamos en el array
         //con el appendChild(agregamos nodos)
         ciudad.appendChild(c);
     })
