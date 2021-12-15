@@ -10,8 +10,6 @@ let status_ = document.getElementById("status"); //seria si esta nublado
 let description = document.getElementById("description"); //descripción
 let today = new Date(); //crea el objeto de la fecha de hoy
 let hour = today.getHours(); //accedo a la hora para la funcion Wallpaper!
-let error404 = document.getElementById("errorFound");
-let aux = 0;
 
 let val;
 
@@ -61,10 +59,9 @@ function changeClima(){
     status_.innerHTML = statusValue;
     description.innerHTML = descriptionValue;
     weather.style.display = "block";
-    error404.style.display = "none";
     })
 
-.catch(error =>error404.innerHTML = "Error. Ciudad no encontrada", error404.style.display = "block", displaytotal.style.display = "none")
+.catch(error =>alert("Error. Ciudad no encontrada"))
 
 }
 
@@ -76,43 +73,63 @@ function agregarCiudad(){
 
     // Si el input esta vacio, se pide que se ingrese alguna ciudad
     if(nuevosC!=0){
-        //si no hay nada guardado al principio 
+        //Si no hay nada guardado al principio 
         //entonces guarda/comienza un array vacio
         if(localStorage.getItem('Ciudad') == null){
             //Nombre de la clave: Ciudad
             //El valor que le pasa a la clave es un array vacio
+            //se guarda/setea el array vacio con la clave 'Ciudad'
             localStorage.setItem('Ciudad', "[]");
         } 
         //setitem: guarda informacion
         //getitem: obtiene informacion
-        // Se crea la variable viejosC y se obtienen todos los valores
-        // que hay en la clave 'Ciudad' del localStorage. 
+        // Se crea la variable viejosC y se condiciona para que 
+        // esta sea la clave 'Ciudad' (JSON.parse convierte a texto)
         var viejosC = JSON.parse(localStorage.getItem('Ciudad'));
 
         //Para realizar la validacion de que la ciudad ya fue ingresada o no
-        //creamos la variable var
+        //creamos la variable val, con el includes observamos dentro de viejosC
+        //si existe el elemento nuevosC y le asignamos val
         val = viejosC.includes(nuevosC);
 
+        //Si val es falso es porque la ciudad no esta agregada en el array.
         if(val == false){
-            //obtenemos los datos antiguos y se los pegamos al nuevo array (push) 
+            //Obtenemos los datos antiguos de nuevosC y se los cargamos 
+            //con .push al array viejosC 
             viejosC.push(nuevosC);
-            //guardamos los datos antiguos + los nuevos en el localstorage
+            //Seteamos/guardamos el localStorage con la clave 'Ciudad', 
+            // y con el JSON.stringify convertimos los valores(ciudades del array)  
+            // que tenemos en viejosC a una cadena de texto
             localStorage.setItem('Ciudad', JSON.stringify(viejosC));
         } else{
+            //En caso de que val es True, es decir, si la ciudad ya esta ingresada
+            //alertamos al usuario de que la ciudad ya fue ingresada
             alert("Ciudad ya ingresada");
         }
     } else {
+        //En caso de que el valor de input de nuevosC es vacio
+        //alertamos al usuario de que ingrese la ciudad correctamente 
         alert("Ingrese una ciudad");
     }
 } 
 
 function mirar(){
 
+    //Obtenemos la clave 'Ciudad' con sus respectivos valores
+    //(distintas ciudades) y se lo asignamos a ciudades
     var ciudades = JSON.parse(localStorage.getItem("Ciudad"));
 
+    //Recorremos ciudades con el forEach(se ejecuta una vez por cada elemento del array
+    // en este caso: ciudades).
     ciudades.forEach(array => {
+        //Creamos una variable c, en esta le asignaremos para que cree un elemento
+        // de 'option'
         var c = document.createElement('option');
+        //A la variable c le vamos asignando ciudad por ciudad
+        //de lo que va leyendo
         c.text = array;
+        //Al id ciudad le agregamos ciudad por ciudad que tengamos en el array
+        //con el appendChild(agregamos nodos)
         ciudad.appendChild(c);
     })
 }
