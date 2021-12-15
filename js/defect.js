@@ -10,6 +10,8 @@ let status_ = document.getElementById("status"); //seria si esta nublado
 let description = document.getElementById("description"); //descripción
 let today = new Date(); //crea el objeto de la fecha de hoy
 let hour = today.getHours(); //accedo a la hora para la funcion Wallpaper!
+let error404 = document.getElementById("errorFound");
+let aux = 0;
 
 let val;
 
@@ -59,22 +61,36 @@ function changeClima(){
     status_.innerHTML = statusValue;
     description.innerHTML = descriptionValue;
     weather.style.display = "block";
+    error404.style.display = "none";
     })
 
-.catch(error =>console.log(error))
+.catch(error =>error404.innerHTML = "Error. Ciudad no encontrada", error404.style.display = "block", displaytotal.style.display = "none")
+
 }
 
 function agregarCiudad(){
 
-    //obtenemos datos del input
+    //obtenemos datos del input "nombreCiudad" que tenemos 
+    // y se lo asignamos a nuevosC
     var nuevosC = document.getElementById("nombreCiudad").value;
 
+    // Si el input esta vacio, se pide que se ingrese alguna ciudad
     if(nuevosC!=0){
-        //si no hay nada guardado al principio entonces guarda un array vacio
+        //si no hay nada guardado al principio 
+        //entonces guarda/comienza un array vacio
         if(localStorage.getItem('Ciudad') == null){
+            //Nombre de la clave: Ciudad
+            //El valor que le pasa a la clave es un array vacio
             localStorage.setItem('Ciudad', "[]");
         } 
+        //setitem: guarda informacion
+        //getitem: obtiene informacion
+        // Se crea la variable viejosC y se obtienen todos los valores
+        // que hay en la clave 'Ciudad' del localStorage. 
         var viejosC = JSON.parse(localStorage.getItem('Ciudad'));
+
+        //Para realizar la validacion de que la ciudad ya fue ingresada o no
+        //creamos la variable var
         val = viejosC.includes(nuevosC);
 
         if(val == false){
